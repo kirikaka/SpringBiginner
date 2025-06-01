@@ -10,6 +10,9 @@ public class MemberDao {
 
     private Map<String, Member> map = new HashMap<>();
 
+    public MemberDao() {
+    }
+
     public Member selectByEmail(String email) {
         return map.get(email);
     }
