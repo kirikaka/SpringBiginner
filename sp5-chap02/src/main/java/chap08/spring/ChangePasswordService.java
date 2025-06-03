@@ -1,5 +1,8 @@
 package chap08.spring;
 
+import org.springframework.transaction.annotation.Transactional;
+
+@Transactional
 public class ChangePasswordService {
     private MemberDao memberDao;
     public void changePassword(String email, String oldPwd,String newPwd){

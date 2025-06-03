@@ -1,12 +1,17 @@
 package chap08.config;
 
+import chap08.spring.ChangePasswordService;
 import chap08.spring.MemberDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.apache.tomcat.jdbc.pool.DataSource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Configuration
+@EnableTransactionManagement
 public class AppCtx {
 
     @Bean(destroyMethod = "close")
@@ -24,6 +29,20 @@ public class AppCtx {
     @Bean
     public MemberDao memberDao() {
         return new MemberDao(dataSource());
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+        transactionManager.setDataSource(dataSource());
+        return transactionManager;
+    }
+
+    @Bean
+    public ChangePasswordService changePwdSvc() {
+        ChangePasswordService changePasswordService = new ChangePasswordService();
+        changePasswordService.setMemberDao(memberDao());
+        return changePasswordService;
     }
 
 }
