@@ -15,6 +15,7 @@ create table spring5fs.MEMBER(
 
 insert into MEMBER(EMAIL,PASSWORD,NAME,REGDATE) values('madvirus@madvirus.net','1234','cbk',now());
 
+insert into MEMBER(EMAIL,PASSWORD,NAME,REGDATE) values('atg@atg.net','1234','cbk',now());
 
 
 SELECT User, Host FROM mysql.user WHERE User='spring5';
