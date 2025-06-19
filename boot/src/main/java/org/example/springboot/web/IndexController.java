@@ -1,10 +1,13 @@
 package org.example.springboot.web;
 
+import org.example.springboot.config.auth.dto.SessionUser;
 import org.example.springboot.service.PostsService;
 import org.example.springboot.web.dto.PostsResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class IndexController {
@@ -16,8 +19,12 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, HttpSession httpSession) {
         model.addAttribute("posts",postsService.findAllDesc());
+        SessionUser user=(SessionUser) httpSession.getAttribute("user");
+        if(user!=null){
+            model.addAttribute("userName",user.getName());
+        }
         return "index";
     }
 
