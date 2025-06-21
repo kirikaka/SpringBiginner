@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 // main메소드의 SpringApplication.run으로 인해 내장 WAS(Web Application Server) 실행.
 //@SpringBootApplication(exclude = {org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
 
-@EnableJpaAuditing //JPA Auditing활성화
+//@EnableJpaAuditing //JPA Auditing활성화
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
